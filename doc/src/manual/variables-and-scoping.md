@@ -248,7 +248,7 @@ to `n`, as an example:
 ```julia
 function sum_to(n)
     s = 0 # new local
-    for i = 1:n
+    for i in 1:n
         s = s + i # assign existing local
     end
     return s # same local
@@ -264,7 +264,7 @@ assignment updates the existing `s` instead of creating a new local. We can test
 ```jldoctest
 julia> function sum_to(n)
            s = 0 # new local
-           for i = 1:n
+           for i in 1:n
                s = s + i # assign existing local
            end
            return s # same local
@@ -290,7 +290,7 @@ before updating `s`:
 ```jldoctest
 julia> function sum_to_def(n)
            s = 0 # new local
-           for i = 1:n
+           for i in 1:n
                t = s + i # new local `t`
                s = t # assign existing local `s`
            end
@@ -322,7 +322,7 @@ julia> function sum_to_def_closure(n)
                s = t # assign same local `s` as below
            end
            s = 0 # new local
-           for i = 1:n
+           for i in 1:n
                loop_body(i)
            end
            return s, @isdefined(t)
@@ -353,7 +353,7 @@ extracting the bodies of the `greet` and `sum_to_def` functions into soft scope 
 body of `greet` in a `for` loop—which is soft, rather than hard—and evaluate it in the REPL:
 
 ```jldoctest
-julia> for i = 1:3
+julia> for i in 1:3
            x = "hello" # new local
            println(x)
        end
@@ -372,7 +372,7 @@ scope, fixing its argument to `n = 10`
 
 ```julia
 s = 0
-for i = 1:10
+for i in 1:10
     t = s + i
     s = t
 end
@@ -389,7 +389,7 @@ working in the REPL first:
 julia> s = 0 # global
 0
 
-julia> for i = 1:10
+julia> for i in 1:10
            t = s + i # new local `t`
            s = t # assign global `s`
        end
@@ -416,7 +416,7 @@ though it were in a file instead:
 ```jldoctest
 julia> code = """
        s = 0 # global
-       for i = 1:10
+       for i in 1:10
            t = s + i # new local `t`
            s = t # new local `s` with warning
        end
@@ -474,7 +474,7 @@ scale." When you see a small piece of code in one place like this, it's quite cl
 
 ```julia
 s = 0
-for i = 1:10
+for i in 1:10
     s += i
 end
 ```
@@ -489,7 +489,7 @@ x = 123
 # much later
 # maybe in a different file
 
-for i = 1:10
+for i in 1:10
     x = "hello"
     println(x)
 end
@@ -518,7 +518,7 @@ angry that they now had to write:
 
 ```julia
 s = 0
-for i = 1:10
+for i in 1:10
     global s += i
 end
 ```
@@ -657,7 +657,7 @@ were surrounded by a `let` block, as demonstrated by this example:
 ```jldoctest
 julia> Fs = Vector{Any}(undef, 2);
 
-julia> for j = 1:2
+julia> for j in 1:2
            Fs[j] = ()->j
        end
 
@@ -673,7 +673,7 @@ A `for` loop or comprehension iteration variable is always a new variable:
 ```julia-repl enable_doctest_when_deprecation_warning_is_removed
 julia> function f()
            i = 0
-           for i = 1:3
+           for i in 1:3
                # empty
            end
            return i
@@ -689,7 +689,7 @@ This can be done conveniently by adding the keyword `outer`:
 ```jldoctest
 julia> function f()
            i = 0
-           for outer i = 1:3
+           for outer i in 1:3
                # empty
            end
            return i

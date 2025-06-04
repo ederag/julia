@@ -344,7 +344,7 @@ See also [`for`](@ref).
 ```jldoctest
 julia> function f()
            i = 0
-           for i = 1:3
+           for i in 1:3
                # empty
            end
            return i
@@ -357,7 +357,7 @@ julia> f()
 ```jldoctest
 julia> function f()
            i = 0
-           for outer i = 1:3
+           for outer i in 1:3
                # empty
            end
            return i
@@ -369,7 +369,7 @@ julia> f()
 
 ```jldoctest
 julia> i = 0 # global variable
-       for outer i = 1:3
+       for outer i in 1:3
        end
 ERROR: syntax: no outer local variable declaration exists for "for outer"
 [...]

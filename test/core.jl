@@ -793,7 +793,7 @@ end
 
 # issue #12806
 let i = 0, x = 0
-    for outer i = 1:10
+    for outer i in 1:10
         try
             break
         finally
@@ -3241,7 +3241,7 @@ end
 let
     function forouter()
         i = 1
-        for outer i = 2:3
+        for outer i in 2:3
         end
         return i
     end
@@ -3249,7 +3249,7 @@ let
 end
 
 @test_throws ErrorException("syntax: no outer variable declaration exists for \"for outer\"") @eval function f()
-    for outer i = 1:2
+    for outer i in 1:2
     end
 end
 

@@ -162,7 +162,7 @@ let a = []
 end
 
 let i, j
-    for outer i = 1:2, j = 1:0
+    for outer i in 1:2, j in 1:0
     end
     @test i == 2
     @test !@isdefined(j)

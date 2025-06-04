@@ -420,7 +420,7 @@ were surrounded by a `let` block:
 ```jldoctest
 julia> Fs = Vector{Any}(undef, 2);
 
-julia> for j = 1:2
+julia> for j in 1:2
            Fs[j] = ()->j
        end
 
@@ -436,7 +436,7 @@ A `for` loop or comprehension iteration variable is always a new variable:
 ```julia-repl enable_doctest_when_deprecation_warning_is_removed
 julia> function f()
            i = 0
-           for i = 1:3
+           for i in 1:3
            end
            return i
        end;
@@ -451,7 +451,7 @@ This can be done conveniently by adding the keyword `outer`:
 ```jldoctest
 julia> function f()
            i = 0
-           for outer i = 1:3
+           for outer i in 1:3
            end
            return i
        end;
